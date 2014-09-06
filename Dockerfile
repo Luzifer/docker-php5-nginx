@@ -19,4 +19,4 @@ RUN \
 
 EXPOSE 80
 
-CMD ["nginx"]
+CMD ["/usr/local/bin/container-run.sh"]

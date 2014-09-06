@@ -4,5 +4,8 @@
   tasks:
     - include: tasks/nginx.yml
 
+    - name: Make entrypoint for docker container
+      copy: src=files/container-run.sh dest=/usr/local/bin/container-run.sh mode=0755 owner=root group=root
+
   handlers:
     - include: handlers/nginx.yml
