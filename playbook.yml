@@ -1,0 +1,8 @@
+---
+- hosts: all
+  sudo: yes
+  tasks:
+    - include: tasks/nginx.yml
+
+  handlers:
+    - include: handlers/nginx.yml

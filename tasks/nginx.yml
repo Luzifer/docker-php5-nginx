@@ -1,0 +1,43 @@
+---
+- name: ensure required packages are installed
+  apt: name={{ item }} update_cache=yes
+  with_items:
+    - nginx
+    - php5-cgi
+    - php5-curl
+    - spawn-fcgi
+  notify:
+    - restart spawn_fcgi
+    - restart nginx
+
+- name: Remove default nginx configuration
+  file: path=/etc/nginx/sites-enabled/default state=absent
+
+- name: Configure nginx
+  copy: src=files/nginx.conf dest=/etc/nginx/sites-enabled/phpframework_app
+  notify:
+    - restart nginx
+
+- name: Create includes directory
+  file: path=/etc/nginx/includes state=directory
+
+- name: Configure fastcgi params
+  copy: src=files/fastcgi_params.inc dest=/etc/nginx/includes/fastcgi_params.inc
+  notify:
+    - restart nginx
+
+- name: Create spawn-fcgi directory
+  file: path=/etc/spawn-fcgi state=directory
+
+- name: Configure spawn-fcgi
+  copy: src=files/cgi_pool dest=/etc/spawn-fcgi/phpframework_app
+  notify:
+    - restart spawn_fcgi
+
+- name: Set up init script for spawn-fcgi
+  copy: src=files/init-spawn-fcgi.sh dest=/etc/init.d/spawn-fcgi owner=root group=root mode=0755
+  notify:
+    - restart spawn_fcgi
+
+- name: Enable spawn-fcgi service
+  service: name=spawn-fcgi enabled=yes
