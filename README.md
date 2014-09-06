@@ -1,6 +1,6 @@
 # luzifer/php5-nginx Dockerfile
 
-This repository contains **Dockerfile** of [Nginx](http://nginx.org/) for [Docker](https://www.docker.com/)'s [automated build](https://registry.hub.docker.com/u/luzifer/php5-nginx/) published to the public [Docker Hub Registry](https://registry.hub.docker.com/).
+This repository contains **Dockerfile** of [Nginx](http://nginx.org/) with PHP5 applications which have an `index.php` as an entry point like [PHPFramework](https://github.com/Luzifer/PHPFramework) apps for [Docker](https://www.docker.com/)'s [automated build](https://registry.hub.docker.com/u/luzifer/php5-nginx/) published to the public [Docker Hub Registry](https://registry.hub.docker.com/).
 
 ## Base Docker Image
 
