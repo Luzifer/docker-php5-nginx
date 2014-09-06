@@ -35,7 +35,9 @@ Then, execute the following to build the image:
 This will create an image named `myuser/myapp` with your application ready to go.
 To launch it, just type:
 
-  docker run -d -p 80 myuser/myapp
+```
+docker run -d -p 80 myuser/myapp
+```
 
 Easy!
 
