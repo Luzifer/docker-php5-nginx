@@ -30,7 +30,9 @@ CMD ["/usr/local/bin/container-run.sh"]
 
 Then, execute the following to build the image:
 
-  docker build -t myuser/myapp .
+```
+docker build -t myuser/myapp .
+```
 
 This will create an image named `myuser/myapp` with your application ready to go.
 To launch it, just type:
