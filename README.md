@@ -21,8 +21,8 @@ Create a `Dockerfile` similar to the following in your application code folder:
 ```
 FROM luzifer/php5-nginx
 
-ONBUILD RUN mkdir -p /application
-ONBUILD ADD . /application
+RUN mkdir -p /application
+ADD . /application
 
 EXPOSE 80
 CMD ["/usr/local/bin/container-run.sh"]
