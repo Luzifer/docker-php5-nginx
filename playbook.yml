@@ -1,6 +1,12 @@
 ---
 - hosts: all
   sudo: yes
+  vars:
+     # php5-fpm
+     max_children: 10
+     start_servers: 2
+     min_spare_servers: 1
+     max_spare_servers: 3
   tasks:
     - include: tasks/nginx.yml
 

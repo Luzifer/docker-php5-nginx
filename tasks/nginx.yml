@@ -3,11 +3,10 @@
   apt: name={{ item }} update_cache=yes
   with_items:
     - nginx
-    - php5-cgi
     - php5-curl
-    - spawn-fcgi
+    - php5-fpm
   notify:
-    - restart spawn_fcgi
+    - restart php5-fpm
     - restart nginx
 
 - name: Remove default nginx configuration
@@ -26,18 +25,7 @@
   notify:
     - restart nginx
 
-- name: Create spawn-fcgi directory
-  file: path=/etc/spawn-fcgi state=directory
-
-- name: Configure spawn-fcgi
-  copy: src=files/cgi_pool dest=/etc/spawn-fcgi/phpframework_app
+- name: fpm config
+  action: template src='templates/fpm-pool.conf' dest='/etc/php5/fpm/pool.d/www.conf'
   notify:
-    - restart spawn_fcgi
-
-- name: Set up init script for spawn-fcgi
-  copy: src=files/init-spawn-fcgi.sh dest=/etc/init.d/spawn-fcgi owner=root group=root mode=0755
-  notify:
-    - restart spawn_fcgi
-
-- name: Enable spawn-fcgi service
-  service: name=spawn-fcgi enabled=yes
+    - restart php5-fpm
