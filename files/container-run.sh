@@ -1,4 +1,4 @@
 #!/bin/bash
 
-/etc/init.d/spawn-fcgi start
+/etc/init.d/php5-fpm start
 exec nginx
